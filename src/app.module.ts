@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { CentimeterController } from './centimeter/centimeter.controller';
-import { CentimeterService } from './centimeter/centimeter.service';
+import { CentimeterModule } from './centimeter/centimeter.module';
+import { AppController } from './app.controller';
 
 @Module({
-  imports: [],
-  controllers: [CentimeterController],
-  providers: [CentimeterService],
+  imports: [CentimeterModule],
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}
