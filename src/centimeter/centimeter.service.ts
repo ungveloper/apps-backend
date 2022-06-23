@@ -4,14 +4,14 @@ import { PrismaService } from 'src/prisma.service';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
  */
-import { Card } from '@prisma/client';
+import { CentimeterCard } from '@prisma/client';
 
 @Injectable()
 export class CentimeterService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getAll(): Promise<Card[]> {
-    return await this.prisma.card.findMany();
+  async getAll(): Promise<CentimeterCard[]> {
+    return await this.prisma.centimeterCard.findMany();
   }
 
   /* 
