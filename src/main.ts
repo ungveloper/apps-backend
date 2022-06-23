@@ -28,7 +28,7 @@ async function bootstrap() {
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
 
-  await app.listen(PORT, handleListening);
+  await app.listen(process.env.PORT || PORT, handleListening);
 
   function handleListening() {
     console.log(`🚀 Listening on: http://localhost:${PORT}`);
