@@ -1,5 +1,7 @@
 export class Card {
   id: number;
-  type: number;
+  typeId: number;
   questions: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
