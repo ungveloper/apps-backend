@@ -1,16 +1,20 @@
 import {
-  Body,
   Controller,
-  Delete,
   Get,
+  /* 
+  Body,
+  Delete,
   NotFoundException,
   Param,
   Patch,
   Post,
+   */
 } from '@nestjs/common';
 import { CentimeterService } from './centimeter.service';
+/* 
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
+ */
 import { Card } from './entities/card.entity';
 
 @Controller('centimeter')
@@ -18,10 +22,10 @@ export class CentimeterController {
   constructor(private readonly centimeterServices: CentimeterService) {}
 
   @Get()
-  getAll(): Card[] {
-    return this.centimeterServices.getAll();
+  async getAll(): Promise<Card[]> {
+    return await this.centimeterServices.getAll();
   }
-
+  /* 
   @Get(':id')
   getOne(@Param('id') cardId: number): Card {
     const card = this.centimeterServices.getOne(cardId);
@@ -45,4 +49,5 @@ export class CentimeterController {
   patch(@Param('id') cardId: number, @Body() updateData: UpdateCardDto) {
     return this.centimeterServices.update(cardId, updateData);
   }
+   */
 }

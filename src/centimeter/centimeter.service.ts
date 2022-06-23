@@ -1,17 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma.service';
+/* 
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
-import { Card } from './entities/card.entity';
+ */
+import { Card } from '@prisma/client';
 
 @Injectable()
 export class CentimeterService {
-  private cards: Card[] = [];
+  constructor(private readonly prisma: PrismaService) {}
 
-  getAll(): Card[] {
-    return this.cards;
+  async getAll(): Promise<Card[]> {
+    return await this.prisma.card.findMany();
   }
 
-  getOne(id: number): Card {
+  /* 
+  getOne(id: number) : Card {
     return this.cards.find((card) => card.id === id);
   }
 
@@ -32,4 +36,5 @@ export class CentimeterService {
     this.deleteOne(id);
     this.cards.push({ ...card, ...updateData });
   }
+   */
 }
