@@ -14,6 +14,25 @@ export class CentimeterService {
     return await this.prisma.centimeterCard.findMany();
   }
 
+  async getCardsByType(typeId: number): Promise<CentimeterCard[]> {
+    return await this.prisma.centimeterCard.findMany({
+      where: { typeId },
+    });
+  }
+
+  // Temporary Test Application
+  async getRandomCardByType(typeId: number): Promise<CentimeterCard> {
+    let randomValue = Math.floor(Math.random() * 100) + 1;
+
+    if (typeId === 2) {
+      randomValue = randomValue + 100;
+    }
+
+    return await this.prisma.centimeterCard.findFirst({
+      where: { typeId, id: randomValue },
+    });
+  }
+
   /* 
   getOne(id: number) : Card {
     return this.cards.find((card) => card.id === id);

@@ -1,6 +1,8 @@
 import {
   Controller,
   Get,
+  NotFoundException,
+  Param,
   /* 
   Body,
   Delete,
@@ -25,6 +27,28 @@ export class CentimeterController {
   async getAll(): Promise<Card[]> {
     return await this.centimeterServices.getAll();
   }
+
+  @Get(':id')
+  async getCardsByType(@Param('id') typeId: number): Promise<Card[]> {
+    const cards = await this.centimeterServices.getCardsByType(typeId);
+
+    if (!cards) {
+      throw new NotFoundException(`Card Id: ${typeId} is not found`);
+    }
+    return cards;
+  }
+
+  // Temporary Test Application
+  @Get(':id/random')
+  async getRandomCardByType(@Param('id') typeId: number): Promise<Card> {
+    const card = await this.centimeterServices.getRandomCardByType(typeId);
+
+    if (!card) {
+      throw new NotFoundException(`Card Id: ${typeId} is not found`);
+    }
+    return card;
+  }
+
   /* 
   @Get(':id')
   getOne(@Param('id') cardId: number): Card {
