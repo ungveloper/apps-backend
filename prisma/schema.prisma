@@ -13,18 +13,14 @@ datasource db {
 }
 
 model CentimeterCard {
-  id        Int                @id @default(autoincrement())
-  type      CentimeterCardType @relation(fields: [typeId], references: [id])
-  typeId    Int
-  questions String
-  createdAt DateTime           @default(now())
-  updatedAt DateTime           @updatedAt
+  id       Int            @id @unique @default(autoincrement())
+  type     CentimeterType @relation(fields: [typeId], references: [id])
+  typeId   Int
+  question String
 }
 
-model CentimeterCardType {
-  id        Int              @id @unique @default(autoincrement())
-  subject   String
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
-  Card      CentimeterCard[]
+model CentimeterType {
+  id      Int              @id @unique @default(autoincrement())
+  subject String
+  Card    CentimeterCard[]
 }
